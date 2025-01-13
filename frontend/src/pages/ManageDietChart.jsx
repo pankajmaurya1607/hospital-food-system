@@ -41,7 +41,7 @@ const DietChart = () => {
     if (!token) return;
 
     try {
-      const response = await axios.get('http://localhost:5000/api/dietcharts', {
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/dietcharts`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDietCharts(response.data);
@@ -59,7 +59,7 @@ const DietChart = () => {
     if (!token) return;
 
     try {
-      const response = await axios.get('http://localhost:5000/api/patients', {
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/patients`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPatients(response.data);
@@ -84,13 +84,13 @@ const DietChart = () => {
       };
 
       if (editMode) {
-        await axios.put(`http://localhost:5000/api/dietcharts/${editingChart._id}`, dietChartData, {
+        await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/dietcharts/${editingChart._id}`, dietChartData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setEditMode(false);
         setEditingChart(null);
       } else {
-        await axios.post('http://localhost:5000/api/dietcharts', dietChartData, {
+        await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/dietcharts`, dietChartData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -119,7 +119,7 @@ const DietChart = () => {
     if (!token) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/dietcharts/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/dietcharts/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchDietCharts();

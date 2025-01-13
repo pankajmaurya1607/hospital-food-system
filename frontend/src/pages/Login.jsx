@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     setErrorMessage(''); // Reset error message before making the request
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/auth/login`, { email, password });
       // Check if the response contains user data and token
       if (response.data && response.data.user && response.data.token) {
         login(response.data); // Save user info and token in AuthContext
